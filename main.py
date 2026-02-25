@@ -604,6 +604,22 @@ class MainWindow(QMainWindow):
         btn_settings = QPushButton("⚙ Settings")
         btn_settings.clicked.connect(self.open_settings)
         self.btn_new = QPushButton("+ Create New Venv")
+        self.btn_new.setStyleSheet("""
+            QPushButton {
+                background-color: #2e7d32;
+                color: white;
+                font-weight: bold;
+                padding: 6px 15px;
+                border-radius: 6px;
+            }
+            QPushButton:hover {
+                background-color: #388e3c;
+            }
+            QPushButton:disabled {
+                background-color: #a5d6a7;
+                color: #e8f5e9;
+            }
+        """)
         self.btn_new.clicked.connect(self.create_venv_dialog)
         self.btn_new.setEnabled(bool(self.base_dir))
         
@@ -811,5 +827,5 @@ class MainWindow(QMainWindow):
     def open_packages(self, path): PackageManagerDialog(path, self).exec()
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv); app.setStyle("Fusion")
+    app = QApplication(sys.argv)
     w = MainWindow(); w.show(); sys.exit(app.exec())
